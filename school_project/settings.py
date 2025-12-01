@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)^%vaotpw^gb8+)j8outzqix8g**l6830$t#do4syrk1k2)7)=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -73,11 +73,22 @@ WSGI_APPLICATION = 'school_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+import os
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+"default": {
+"ENGINE": "django.db.backends.mysql",
+"NAME": os.environ.get("MYSQLDATABASE"),
+"USER": os.environ.get("MYSQLUSER"),
+"PASSWORD": os.environ.get("MYSQLPASSWORD"),
+"HOST": os.environ.get("MYSQLHOST"),
+"PORT": os.environ.get("MYSQLPORT", "3306"),
+}
 }
 
 
